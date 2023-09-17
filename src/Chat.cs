@@ -35,7 +35,12 @@ internal class Chat : IChat
         if( arg.type != MValueConst.Type.String )
             return;
 
-        action( player, arg.GetString( ) );
+        var message = arg.GetString( ).Trim();
+        
+        if( string.IsNullOrEmpty( message ) || message.StartsWith( ChatModule.CommandPrefix ) )
+            return;
+        
+        action( player, message );
     }
 
     /// <summary>
@@ -45,11 +50,6 @@ internal class Chat : IChat
     /// <param name="message">the message that the player sent</param>
     private void OnChat( IPlayer player, string message )
     {
-        message = message.Trim( );
-        
-        if( string.IsNullOrEmpty( message ) )
-            return;
-        
         _logger.LogTrace( "New message from {PlayerName}: {Message}", player.Name, message );
         
         if( OnChatMessageAsync != null )
