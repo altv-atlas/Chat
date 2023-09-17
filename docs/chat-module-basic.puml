@@ -1,0 +1,33 @@
+@startuml chat-module
+
+set separator ::
+
+interface AltV.Icarus.Chat::IChat {
+    + <<delegate>> ChatMessageDelegate(IPlayer player, string message) : void
+    + <<delegate>> ChatMessageAsyncDelegate(IPlayer player, string message) : Task
+
+    + <<event>> OnChatMessage() : ChatMessageDelegate
+    + <<event>> OnChatMessageAsync() : ChatMessageDChatMessageAsyncDelegateelegate
+}
+
+class AltV.Icarus.Chat::Chat implements AltV.Icarus.Chat::IChat {
+    - _logger : ILogger<Chat>
+    - OnChatParser(IPlayer player, MValueConst[ ] mValueArray, Action<IPlayer, string> action) : void
+    - OnChat( IPlayer player, string message ) : void
+    + <<ctor>> Chat(ILogger<Chat> logger)
+}
+
+class AltV.Icarus.Chat::ChatModule <<static>> {
+    ~ <<static>> EventName : string
+
+    + <<static>> RegisterChatModule(\n\tthis IServiceCollection services,\n\tstring eventName = "chat:message"\n) : IServiceProvider
+    + <<static>> InitializeChatModule(this IServiceProvider serviceProvider) : IServiceProvider
+}
+
+class AltV.Icarus.Chat::ChatExtensions <<static>> {
+    + <<static>> SendChatMessage(this IPlayer player, string message) : void
+    + <<static>> SendChatMessageToAll(this IPlayer sender, string message) : void
+    + <<static>> SendChatMessageToAll( string message ) : void
+}
+
+@enduml
