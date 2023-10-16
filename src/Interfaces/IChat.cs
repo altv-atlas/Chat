@@ -1,6 +1,6 @@
 ﻿using AltV.Net.Elements.Entities;
 
-namespace AltV.Icarus.Chat.Interfaces;
+namespace AltV.Atlas.Chat.Interfaces;
 
 /// <summary>
 /// The chat delegate
