@@ -1,7 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
 
-namespace AltV.Icarus.Chat;
+namespace AltV.Atlas.Chat;
 
 /// <summary>
 /// Contains some extension methods for the chat module

@@ -1,10 +1,10 @@
-﻿using AltV.Icarus.Chat.Interfaces;
+﻿using AltV.Atlas.Chat.Interfaces;
 using AltV.Net;
 using AltV.Net.Elements.Args;
 using AltV.Net.Elements.Entities;
 using Microsoft.Extensions.Logging;
 
-namespace AltV.Icarus.Chat;
+namespace AltV.Atlas.Chat;
 
 internal class Chat : IChat
 {

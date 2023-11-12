@@ -1,9 +1,12 @@
-﻿using AltV.Icarus.Chat.Interfaces;
+﻿using AltV.Atlas.Chat.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace AltV.Icarus.Chat;
+namespace AltV.Atlas.Chat;
 
+/// <summary>
+/// Starting point of the chat module
+/// </summary>
 public static class ChatModule
 {
     internal static string EventName = "chat:message";
