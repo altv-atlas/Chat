@@ -7,16 +7,19 @@ namespace AltV.Icarus.Chat;
 public static class ChatModule
 {
     internal static string EventName = "chat:message";
+    internal static string CommandPrefix = "/";
     
     /// <summary>
     /// Registers the chat module
     /// </summary>
     /// <param name="services">A service collection</param>
     /// <param name="eventName">Optional: The event that is used to send/receive chat messages from client-side. By default this is "chat:message".</param>
+    /// <param name="commandPrefix">Optional: A command prefix which the player has to type before any command. By default set to "/".</param>
     /// <returns></returns>
-    public static IServiceCollection RegisterChatModule( this IServiceCollection services, string eventName = "chat:message" )
+    public static IServiceCollection RegisterChatModule( this IServiceCollection services, string eventName = "chat:message", string commandPrefix = "/" )
     {
         EventName = eventName;
+        CommandPrefix = commandPrefix;
 
         services.AddSingleton<IChat, Chat>( );
         
