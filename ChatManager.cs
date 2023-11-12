@@ -65,16 +65,16 @@ internal class ChatManager : IChatManager
 
     public void SendMessageToPlayer( IPlayer player, string message )
     {
-        player.Emit( ChatModule.EventName, message );
+        player.Emit( ChatModule.EventName, "", message );
     }
 
     public void SendMessageToAll( IPlayer sender, string message )
     {
-        SendMessageToAll( $"{sender.Name}: {message}" );
+        Alt.EmitAllClients( ChatModule.EventName, sender, message );
     }
     
     public void SendMessageToAll( string message )
     {
-        Alt.EmitAllClients( ChatModule.EventName, message );
+        Alt.EmitAllClients( ChatModule.EventName, "", message );
     }
 }
