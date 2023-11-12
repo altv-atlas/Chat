@@ -6,16 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace AltV.Icarus.Chat;
 
-internal class ChatManager : IChatManager
+internal class Chat : IChat
 {
-    private readonly ILogger<ChatManager> _logger;
+    private readonly ILogger<Chat> _logger;
     public event ChatMessageDelegate? OnChatMessage;
     public event ChatMessageAsyncDelegate? OnChatMessageAsync;
 
-    public ChatManager( ILogger<ChatManager> logger )
+    public Chat( ILogger<Chat> logger )
     {
         _logger = logger;
-        _logger.LogInformation( "Chat Manager initialized!" );
+        _logger.LogDebug( "Chat initialized!" );
         Alt.OnClient<IPlayer, string>( ChatModule.EventName, OnChat, OnChatParser );
     }
     
@@ -61,20 +61,5 @@ internal class ChatManager : IChatManager
         }
         
         OnChatMessage?.Invoke( player, message );
-    }
-
-    public void SendMessageToPlayer( IPlayer player, string message )
-    {
-        player.Emit( ChatModule.EventName, "", message );
-    }
-
-    public void SendMessageToAll( IPlayer sender, string message )
-    {
-        Alt.EmitAllClients( ChatModule.EventName, sender, message );
-    }
-    
-    public void SendMessageToAll( string message )
-    {
-        Alt.EmitAllClients( ChatModule.EventName, "", message );
     }
 }

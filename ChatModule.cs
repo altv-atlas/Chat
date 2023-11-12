@@ -11,19 +11,19 @@ public static class ChatModule
     {
         EventName = eventName;
 
-        services.AddSingleton<IChatManager, ChatManager>( );
+        services.AddSingleton<IChat, Chat>( );
         
         return services;
     }
     
     public static IServiceProvider InitializeChatModule( this IServiceProvider serviceProvider )
     {
-        var chatManager = serviceProvider.GetService<IChatManager>( );
+        var chatManager = serviceProvider.GetService<IChat>( );
 
         var logger = serviceProvider.GetService<ILogger<Logger>>( );
 
         if( chatManager is null || logger is null )
-            throw new NullReferenceException( "Failed to initialize ChatManager" );
+            throw new NullReferenceException( "Failed to initialize Chat" );
 
         logger.LogInformation( "ChatModule initialized!" );
         return serviceProvider;
