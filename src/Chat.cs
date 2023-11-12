@@ -1,5 +1,5 @@
-﻿using AltV.Net;
-using AltV.Net.Async;
+﻿using AltV.Icarus.Chat.Interfaces;
+using AltV.Net;
 using AltV.Net.Elements.Args;
 using AltV.Net.Elements.Entities;
 using Microsoft.Extensions.Logging;
